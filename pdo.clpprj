@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project name="D:\OpenServer\domains\pdo.ru\pdo.clpprj">
+	<settings><PM_URL><![CDATA[http://localhost/pdo.ru]]></PM_URL><PM_HOME_URL><![CDATA[http://localhost/pdo.ru]]></PM_HOME_URL><PM_LIBS><![CDATA[]]></PM_LIBS><PM_FTP_CONNECTION><![CDATA[]]></PM_FTP_CONNECTION><PM_FTP_DIR><![CDATA[]]></PM_FTP_DIR><PM_FTP_UPLOAD_ON_SAVE><![CDATA[INT:0]]></PM_FTP_UPLOAD_ON_SAVE></settings><removed value=";D:\OpenServer\domains\pdo.ru\Codelobster0.php;"/><added value=""/><lastopfiles>
+	</lastopfiles>
+	<errors version="5.3">
+	</errors>
+	<cakedata>
+	</cakedata>
+	<dplmenupath>
+	</dplmenupath><laravael>
+	</laravael><smartyassings>
+	</smartyassings><twigtemplate>
+	</twigtemplate><yiidata>
+	</yiidata>
+	<todoblock>
+	</todoblock>
+	<dbgurls>
+	</dbgurls>
+	<filescache>
+		<file name="D:\OpenServer\domains\pdo.ru\index.php" crc="1505551174"/>
+	</filescache>
+</project>
