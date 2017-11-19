@@ -1,76 +1,131 @@
-<!DOCTYPE html>
-<html>
-    <head>
-       <meta charset="utf-8">
-       <title>Абзацы</title>
-    </head>
-    <body>
-    
-    <ul></ul>
-    
-    <button id="load">Show users</button>
-    
-    <script src="jquery-3.2.1.min.js"></script>
-        <script>
-        
-        $('#load').on('click', loadUsers);
-        
-        function getUrl(method,params){
-        	params = params || {};
-        	params['access_token'] = '546d2bca498113dfadc2ed696b00b4779661a2e54e5812de6ccd2df886da65743940382c64686b6974b35';
-        	return 'https://api.vk.com/method/'+method+'?'+$.param(params);
-			
-		}
-		
-		function sendRequest(method, params, func){
-			$.ajax({
-				url: getUrl(method, params),
-        		method: 'get',
-        		dataType: 'JSONP',
-        		success: func
-			
-			});
-		}
-       function loadUsers(){
-	   		sendRequest('users.search', {fields:'photo_100', count:20}, function(data){
-	   			console.log(data);
-	   		});
-	   }
-        	
-        </script>
-    </body>
-</html>
-
-
-
-
-
-
-
-
-
-
-
-
 <?php
+header('Content-type:text/html; charset=utf-8');
+require_once "phpQuery.php";
+
+try
+  {
+    $pdo = new PDO('mysql:host=localhost;dbname=check', 'root', '');
+    }
+    catch (PDOException $e)
+  {
+  
+  echo "No connection to DB is possible";
+  
+    }
+
+
+
+function getFile($url){
+
+  $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL, $url); 
+    curl_setopt($ch, CURLOPT_FOLLOWLOCATION, TRUE); 
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE); 
+            $result = curl_exec($ch); 
+            curl_close($ch); 
+            return $result;
+
+}
+// aLL parsed data is stored in this array
+$allData = [];
+$i = 0;
+
+function parser($url, $pages, &$allData, &$i, $start = 0){
+
+if($start < $pages){
+
+$file = getFile($url);
+$doc = phpQuery::newDocument($file);
+
+foreach ($doc->find('.articles-container .post-excerpt') as $article){
+  
+  $article = pq($article);
+  
+  //$article->find('.cat')->remove();
+  $allData[$i]['category'] = trim($article->find('.cat')->text());
+  $allData[$i]['title'] = trim($article->find('.pe-title')->text());
+  //$article->find('.cat')->append('<p>Date: '.date('Y-m-d').'</p>');
+  $allData[$i]['img'] = trim($article->find('.img-cont img')->attr('src'));
+  $allData[$i]['description'] = trim($article->find('.post-desc p')->text());
+  
+  $i++;
+}
+
+
+ $next = $doc->find('.pages-nav .current')->next()->attr('href');
+  if(!empty($next)){
+    $start++;
+    parser($next, $pages, $allData, $i, $start);
+  }
+    
+}
+  
+}
+
+$url = "http://www.kolesa.ru/news";
+
+parser($url, 3, $allData, $i);
+
+//print_r($allData);
+
+foreach ($allData as $data){
+
+$stmt = $pdo->prepare("INSERT INTO parse (category, title, img, description) VALUES (:category, :title, :img, :description )");
+$stmt->execute($data);
+
+}
+
+
+
+
+
+
+
 /*
-$fields = ['connections', 'site', 'education', 'contacts', 'status','photo_max', 'city'];
+$dir = scandir('idea');
 
-$params = [
+$array= array();
 
-	'group_id' => 'apiclub',
-	'sort'=>'id_asc',
-	'offset'=>0,
-	'display'=> 'page',
-	'count'=>30,
-	'fields' =>implode(',', $fields),
-	'access_token' =>'a5b0725beb3dd65b912c87e1825fef433021af67ad3c2d83da7a852d0bdca2581e196db9bba0400d407ce'
+function test($dir, &$array){
 	
-];
+	$dh = opendir($dir);
+  while($file = readdir($dh)) {
+    if($file != "." && $file != "..") {
+      if(is_dir("$dir/$file")) {
+    
+        test("$dir/$file", $array);
+      } elseif(strpos($file, '.txt')) {
+        $array[] = $file;
+      }
+    }
+  }
+  closedir($dh);
+	
+}
 
-$request = 'https://api.vk.com/method/groups.getMembers?'.http_build_query($params);
-$response = json_decode(file_get_contents($request),true );
-print_r($response['response']['users']);
+//test('idea', $array);
 
+//print_r($array);
+
+
+
+$path = realpath('idea');
+
+$objects = new RecursiveIteratorIterator(new RecursiveDirectoryIterator('idea'));
+foreach($objects as $name => $object){
+	
+	if(strpos($name, '.txt')){
+		$array[] =  basename($name);
+	}
+    
+}
+echo count($array);
+
+echo '<hr>';
+
+function throughTheDoor($which) {echo "(get through the $which door)"; } 
+$func =new ReflectionFunction('throughTheDoor'); 
+$func->invoke("left"); 
 */
 ?>
+<div></div>
