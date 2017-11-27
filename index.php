@@ -13,7 +13,7 @@ try
   
     }
 
-
+/*
 
 function getFile($url){
 
@@ -75,10 +75,11 @@ $stmt->execute($data);
 
 }
 
+*/
 
 
-
-
+$arr = glob("*.xml");
+print_r($arr);
 
 
 /*
@@ -128,4 +129,4 @@ $func =new ReflectionFunction('throughTheDoor');
 $func->invoke("left"); 
 */
 ?>
-<div></div>
+

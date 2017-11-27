@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project name="D:\OpenServer\domains\pdo.ru\pdo.clpprj">
+	<settings><PM_URL><![CDATA[http://localhost/pdo.ru]]></PM_URL><PM_HOME_URL><![CDATA[http://localhost/pdo.ru]]></PM_HOME_URL><PM_LIBS><![CDATA[]]></PM_LIBS><PM_FTP_CONNECTION><![CDATA[]]></PM_FTP_CONNECTION><PM_FTP_DIR><![CDATA[]]></PM_FTP_DIR><PM_FTP_UPLOAD_ON_SAVE><![CDATA[INT:0]]></PM_FTP_UPLOAD_ON_SAVE></settings><removed value=";D:\OpenServer\domains\pdo.ru\Codelobster0.php;"/><added value=""/><lastopfiles>
+		<file name="D:\OpenServer\domains\pdo.ru\index1.php"/>
+		<file name="D:\OpenServer\domains\pdo.ru\index.php"/>
+	</lastopfiles>
+	<todoblock>
+	</todoblock>
+	<filescache>
+		<file name="D:\OpenServer\domains\pdo.ru\idea\dateien\ordner\nacht.txt" crc="1510131926"/>
+		<file name="D:\OpenServer\domains\pdo.ru\idea\dateien\tag.txt" crc="1510131874"/>
+		<file name="D:\OpenServer\domains\pdo.ru\idea\workspace.xml" crc="1509982798"/>
+		<file name="D:\OpenServer\domains\pdo.ru\idea\vcs.xml" crc="1509978804"/>
+		<file name="D:\OpenServer\domains\pdo.ru\idea\modules.xml" crc="1509978620"/>
+		<file name="D:\OpenServer\domains\pdo.ru\jquery-3.2.1.min.js" crc="1505661136"/>
+		<file name="D:\OpenServer\domains\pdo.ru\index1.php" crc="1509980581"/>
+		<file name="D:\OpenServer\domains\pdo.ru\index.php" crc="1510562529"/>
+	</filescache>
+</project>
